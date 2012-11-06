@@ -27,7 +27,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'zombles = zombles.server:main',
+            'zombles.server = zombles.server:main',
+            'zombles.schema = zombles.schema:create',
         ],
     },
 )
