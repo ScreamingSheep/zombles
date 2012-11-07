@@ -46,7 +46,7 @@ CREATE TABLE users (
     name varchar(100) NOT NULL UNIQUE,
     x int NOT NULL,
     y int NOT NULL,
-    health int NOT NULL
+    health int NOT NULL DEFAULT 100
 );
 
 -- Items.

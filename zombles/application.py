@@ -32,14 +32,9 @@ def application(environ, start_response):
         response = HTTPNotFound
         return response(environ, start_response)
 
-    try:
-        # Connect to the database.
-        connection = connect()
+    # Connect to the database.
+    connection = connect()
 
-        # Generate the response.
-        response = api[path](request, connection)
-
-    except:
-        response = HTTPInternalServerError()
-        
+    # Generate the response.
+    response = api[path](request, connection)
     return response(environ, start_response)
