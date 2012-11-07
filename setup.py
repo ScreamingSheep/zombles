@@ -19,16 +19,10 @@ setup(
         'PyMySQL3',
         'webob',
     ],
-    test_suite='nose.collector',
-    tests_require=[
-        'nose',
-        'mock',
-        'pep8',
-    ],
     entry_points={
         'console_scripts': [
             'zombles.server = zombles.server:main',
-            'zombles.schema = zombles.schema:create',
+            'zombles.client = zombles.client:main',
         ],
     },
 )

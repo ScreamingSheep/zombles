@@ -6,10 +6,17 @@ USE zombles;
 -- Create the zombles user.
 GRANT ALL ON zombles TO 'zombles'@'localhost';
 
+-- Spawn points.
+CREATE TABLE player_spawns (
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    x int NOT NULL,
+    y int NOT NULL
+);
+
 -- A list of rooms that compose the level.
 CREATE TABLE rooms (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name text NOT NULL,
+    name varchar(100) NOT NULL,
     left_wall int NOT NULL,
     right_wall int NOT NULL,
     top_wall int NOT NULL,
@@ -28,7 +35,7 @@ CREATE TABLE doors (
 CREATE TABLE treasures (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     room_id int NOT NULL REFERENCES rooms,
-    name text NOT NULL,
+    name varchar(100) NOT NULL,
     x int NOT NULL,
     y int NOT NULL
 );
@@ -36,7 +43,7 @@ CREATE TABLE treasures (
 -- Users.
 CREATE TABLE users (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name text NOT NULL,
+    name varchar(100) NOT NULL UNIQUE,
     x int NOT NULL,
     y int NOT NULL,
     health int NOT NULL
@@ -46,5 +53,5 @@ CREATE TABLE users (
 CREATE TABLE items (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id int NOT NULL REFERENCES rooms,
-    name text NOT NULL
+    name varchar(100) NOT NULL
 );
