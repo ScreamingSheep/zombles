@@ -18,6 +18,7 @@ setup(
         'setuptools',
         'PyMySQL3',
         'webob',
+        'requests',
     ],
     entry_points={
         'console_scripts': [
