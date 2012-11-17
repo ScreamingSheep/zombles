@@ -27,3 +27,8 @@ def main():
     print('Listening on %s:%d' % (host, port))
     server = make_server(host, port, application)
     server.serve_forever()
+
+
+# Start the server if the script is called directly.
+if __name__ == '__main__':
+	main()

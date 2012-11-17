@@ -29,7 +29,7 @@ def application(environ, start_response):
 
     # Check for a bad path.
     if path not in api:
-        response = HTTPNotFound
+        response = HTTPNotFound()
         return response(environ, start_response)
 
     # Connect to the database.

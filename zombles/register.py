@@ -4,6 +4,9 @@
 # Used to choose a spawn.
 from random import choice
 
+# Used to respond to the request.
+from webob import Response
+
 
 def get_spawn(connection):
     '''
@@ -43,6 +46,7 @@ def register(request, connection):
     '''
     Used to register the user.
     '''
+    '''
     # Get the name of the new user.
     name = request.json
 
@@ -51,3 +55,9 @@ def register(request, connection):
 
     # Insert the player.
     insert_user(connection, name, x, y)
+    '''
+
+	# Create the response.
+    response = Response()
+    response.text = 'success'
+    return response
