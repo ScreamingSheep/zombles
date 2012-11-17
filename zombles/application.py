@@ -35,6 +35,21 @@ def application(environ, start_response):
     # Connect to the database.
     connection = connect()
 
-    # Generate the response.
-    response = api[path](request, connection)
+    try:
+        # Generate the response.
+        response = api[path](request, connection)
+
+    except:
+        # If something went wrong, undo any changes.
+        connection.rollback()
+        raise
+        
+    else:
+        # If things go okay, write stuff to the database.
+        connection.commit()
+        
+    finally:
+        # Close the connection so that someone else can use it.
+        connection.close()
+        
     return response(environ, start_response)

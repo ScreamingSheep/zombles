@@ -4,10 +4,16 @@
 # Used to access console parameters.
 from sys import argv
 
+# Used to connect to the server.
+from requests import post
+
+# Used to encode the request.
+from json import dumps
+
 
 def main():
     '''
-    Runs the main server.
+    Runs the client.
     '''
     # Print usage.
     if len(argv) != 3:
@@ -16,8 +22,9 @@ def main():
     # Get the server's parameters.
     host = argv[1]
     port = int(argv[2])
+    url = 'http://%s:%d/register' % (host, port)
 
-    # Create the server.
-    print('Listening on %s:%d' % (host, port))
-    server = make_server(host, port, application)
-    server.serve_forever()
+    # Register the user.
+    name = dumps('victor')
+    response = post(url, data=name)
+    print(response.text)

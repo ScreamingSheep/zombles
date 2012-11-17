@@ -19,11 +19,11 @@ def get_spawn(connection):
             SELECT x, y
             FROM player_spawns
         ''')
+        
+        return choice(cursor.fetchall())
 
     finally:
         cursor.close()
-
-    return choice(cursor.fetchall())
 
 
 def insert_user(connection, name, x, y):
@@ -36,7 +36,7 @@ def insert_user(connection, name, x, y):
         cursor.execute('''
             INSERT INTO users (name, x, y)
             VALUES (%s, %s, %s)
-        ''', name, x, y)
+        ''', [name, x, y])
 
     finally:
         cursor.close()
@@ -46,16 +46,14 @@ def register(request, connection):
     '''
     Used to register the user.
     '''
-    '''
     # Get the name of the new user.
     name = request.json
 
     # Get the player's spawn.
-    x, y = get_spwan(connection)
+    x, y = get_spawn(connection)
 
     # Insert the player.
     insert_user(connection, name, x, y)
-    '''
 
 	# Create the response.
     response = Response()
