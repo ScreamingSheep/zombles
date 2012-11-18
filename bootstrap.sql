@@ -3,10 +3,6 @@ DROP DATABASE IF EXISTS zombles;
 CREATE DATABASE zombles;
 USE zombles;
 
--- Create the zombles user.
-CREATE USER 'zombles'@'localhost';
-GRANT ALL ON zombles TO 'zombles'@'localhost';
-
 -- Spawn points.
 CREATE TABLE player_spawns (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,

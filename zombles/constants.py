@@ -5,7 +5,9 @@
 HOST = 'localhost'
 PORT = 3306
 DATABASE = 'zombles'
-USER = 'zombles'
+# The root user is used to void the hasstle of setting up a user in mysql.
+USER = 'root'
+PASSWORD = 'vgss'
 
 # To prevent the user from having to type a lot of choices out, we can use
 # these dictionaries to translate back and fourth between shortcuts.

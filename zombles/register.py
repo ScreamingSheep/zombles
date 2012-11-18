@@ -19,8 +19,14 @@ def get_spawn(connection):
             SELECT x, y
             FROM player_spawns
         ''')
-        
-        return choice(cursor.fetchall())
+		
+        # Make sure that there are spawn points.
+        result = cursor.fetchall()
+        if len(result) == 0:
+            raise ValueError('You need to insert spawn points.')
+
+        # Randomly choose a spawn point.
+        return choice(result)
 
     finally:
         cursor.close()
