@@ -24,7 +24,9 @@ def main():
     port = int(argv[2])
     url = 'http://%s:%d/register' % (host, port)
 
+    # Get the user's name.
+    name = input('Please enter your name: ')
+
     # Register the user.
-    name = dumps('victor')
-    response = post(url, data=name)
+    response = post(url, data=dumps(name))
     print(response.text)

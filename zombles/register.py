@@ -7,6 +7,9 @@ from random import choice
 # Used to respond to the request.
 from webob import Response
 
+# Used to check for duplicate names.
+from pymysql.err import IntegrityError
+
 
 def get_spawn(connection):
     '''
@@ -57,11 +60,18 @@ def register(request, connection):
 
     # Get the player's spawn.
     x, y = get_spawn(connection)
+    
+    # Create the response.
+    response = Response()
 
     # Insert the player.
-    insert_user(connection, name, x, y)
+    try:
+        insert_user(connection, name, x, y)
+        
+    except IntegrityError:
+        response.text = 'Please try a different username.'
+        
+    else:
+        response.text = 'Username successful!'
 
-	# Create the response.
-    response = Response()
-    response.text = 'success'
     return response

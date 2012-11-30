@@ -49,6 +49,6 @@ CREATE TABLE users (
 -- Items.
 CREATE TABLE items (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id int NOT NULL REFERENCES rooms,
+    user_id int NOT NULL REFERENCES users,
     name varchar(100) NOT NULL
 );
