@@ -26,7 +26,7 @@ def register(url):
 
 def get_move():
     '''
-    Used to the move from the user.
+    Used to get the move from the user.
     '''
     move = None
     while True:
@@ -69,6 +69,7 @@ def main():
     # Register the new user.
     user_id = register(url)
     
-    # Get the move from the player.
-    the_move = get_move()
-    move(url, user_id, the_move)
+    while True:
+        # Get the move from the player.
+        the_move = get_move()
+        move(url, user_id, the_move)
