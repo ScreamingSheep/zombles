@@ -24,6 +24,35 @@ def register(url):
     
     return id
 
+def get_move():
+    '''
+    Used to the move from the user.
+    '''
+    move = None
+    while True:
+        # Get a movement.
+        move = input('Enter move: ')
+        
+        # Check to see if it's valid.
+        if move in ['w', 'a', 's', 'd']:
+            break
+    
+    return move
+    
+def move(url, user_id, the_move):
+    '''
+    Sends the movement to the server.
+    '''
+    # Create the move data.
+    data = {
+        'user': user_id,
+        'move': the_move,
+    }
+    
+    # Try to move player.
+    response = post(url + 'move', data=dumps(data))
+    print(response.text)
+    
 def main():
     '''
     Runs the client.
@@ -40,12 +69,6 @@ def main():
     # Register the new user.
     user_id = register(url)
     
-    # Setup some movement data.
-    data = {
-        'user': user_id,
-        'move': 'left',
-    }
-    
-    # Try to move player.
-    response = post(url + 'move', data=dumps(data))
-    print(response.text)
+    # Get the move from the player.
+    the_move = get_move()
+    move(url, user_id, the_move)

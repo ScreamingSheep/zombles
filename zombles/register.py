@@ -7,10 +7,6 @@ from random import choice
 # Used to respond to the request.
 from webob import Response
 
-# Used to check for duplicate names.
-from pymysql.err import IntegrityError
-
-
 # Used Json to encode the result
 from json import dumps
 

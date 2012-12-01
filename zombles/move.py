@@ -13,6 +13,7 @@ def move(request, connection):
     '''
     # Get the name of the new user.
     data = request.json
+    print(data)
     
     # Create the response.
     response = Response()
