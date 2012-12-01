@@ -6,6 +6,7 @@ from webob import Request, Response
 
 # Used to process requests.
 from zombles.register import register
+from zombles.move import move
 
 # Exception handling.
 from webob.exc import HTTPInternalServerError, HTTPNotFound
@@ -25,6 +26,7 @@ def application(environ, start_response):
     # API end points.
     api = {
         'register': register,
+        'move': move,
     }
 
     # Check for a bad path.

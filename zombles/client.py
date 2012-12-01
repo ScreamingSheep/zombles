@@ -40,4 +40,12 @@ def main():
     # Register the new user.
     user_id = register(url)
     
-    print (user_id)
+    # Setup some movement data.
+    data = {
+        'user': user_id,
+        'move': 'left',
+    }
+    
+    # Try to move player.
+    response = post(url + 'move', data=dumps(data))
+    print(response.text)
