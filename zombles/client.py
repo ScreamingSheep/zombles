@@ -8,8 +8,21 @@ from sys import argv
 from requests import post
 
 # Used to encode the request.
-from json import dumps
+from json import loads, dumps
 
+
+def register(url):
+    '''
+    Used to register the user.
+    '''
+    # Get the user's name.
+    name = input('Please enter your name: ')
+
+    # Register the user.
+    response = post(url + 'register', data=dumps(name))
+    id = loads(response.text)
+    
+    return id
 
 def main():
     '''
@@ -22,11 +35,9 @@ def main():
     # Get the server's parameters.
     host = argv[1]
     port = int(argv[2])
-    url = 'http://%s:%d/register' % (host, port)
+    url = 'http://%s:%d/' % (host, port)
 
-    # Get the user's name.
-    name = input('Please enter your name: ')
-
-    # Register the user.
-    response = post(url, data=dumps(name))
-    print(response.text)
+    # Register the new user.
+    user_id = register(url)
+    
+    print (user_id)

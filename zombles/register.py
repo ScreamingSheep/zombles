@@ -11,6 +11,9 @@ from webob import Response
 from pymysql.err import IntegrityError
 
 
+# Used Json to encode the result
+from json import dumps
+
 def get_spawn(connection):
     '''
     Returns a random player spawn point as a tuple.
@@ -46,6 +49,13 @@ def insert_user(connection, name, x, y):
             INSERT INTO users (name, x, y)
             VALUES (%s, %s, %s)
         ''', [name, x, y])
+        
+        cursor.execute('''
+            SELECT LAST_INSERT_ID()
+        ''')
+        
+        result = cursor.fetchone()[0]    
+        return result  
 
     finally:
         cursor.close()
@@ -65,13 +75,7 @@ def register(request, connection):
     response = Response()
 
     # Insert the player.
-    try:
-        insert_user(connection, name, x, y)
-        
-    except IntegrityError:
-        response.text = 'Please try a different username.'
-        
-    else:
-        response.text = 'Username successful!'
-
+    id = insert_user(connection, name, x, y)
+    response.text = dumps(id)
+    
     return response

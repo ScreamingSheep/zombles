@@ -40,7 +40,7 @@ CREATE TABLE treasures (
 -- Users.
 CREATE TABLE users (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(100) NOT NULL UNIQUE,
+    name varchar(100) NOT NULL,
     x int NOT NULL,
     y int NOT NULL,
     health int NOT NULL DEFAULT 100
